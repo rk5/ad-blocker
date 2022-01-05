@@ -187,10 +187,10 @@ update_zone_data () {
   # check for the include statement in the ZoneDataFile
   # if it is present do nothing, else append the include statement to the ZoneDataFile
   if [ -f "$ZoneDataDB" ] && [ -f "$ZoneDataFile" ]; then
-    Matches=$(grep 'include '${ZoneDataDir}'"/ad-blocker.db";' "$ZoneDataFile")
+    Matches=$(grep 'include "'${ZoneDataDir}'/ad-blocker.db";' "$ZoneDataFile")
     if [ -z "$Matches" ]; then
       echo '' >> "$ZoneDataFile"
-      echo 'include '${ZoneDataFile}'"/ad-blocker.db";' >> "$ZoneDataFile"
+      echo 'include "'${ZoneDataDir}'/ad-blocker.db";' >> "$ZoneDataFile"
     fi
   fi
 }
