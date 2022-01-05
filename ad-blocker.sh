@@ -187,10 +187,10 @@ update_zone_data () {
   # check for the include statement in the ZoneDataFile
   # if it is present do nothing, else append the include statement to the ZoneDataFile
   if [ -f "$ZoneDataDB" ] && [ -f "$ZoneDataFile" ]; then
-    Matches=$(grep 'include "/etc/zone/data/ad-blocker.db";' "$ZoneDataFile")
+    Matches=$(grep 'include '${ZoneDataDir}'"/ad-blocker.db";' "$ZoneDataFile")
     if [ -z "$Matches" ]; then
       echo '' >> "$ZoneDataFile"
-      echo 'include "/etc/zone/data/ad-blocker.db";' >> "$ZoneDataFile"
+      echo 'include '${ZoneDataFile}'"/ad-blocker.db";' >> "$ZoneDataFile"
     fi
   fi
 }
@@ -236,6 +236,9 @@ ZoneDir="${RootDir}/named/etc/zone"
 ZoneDataDir="${ZoneDir}/data"
 ZoneMasterDir="${ZoneDir}/master"
 BlockLists=(
+  "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+)
+xxxBlockLists=(
   "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
   "https://mirror1.malwaredomains.com/files/justdomains"
   "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt"
